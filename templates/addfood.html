@@ -1,0 +1,52 @@
+{% extends "layout.html" %}
+
+{% block body %}
+
+<div style="max-width: 800px; margin: auto; padding: 20px; background: #fff; box-shadow: 0 0 10px rgba(0,0,0,0.1); border-radius: 5px; margin-top: 50px;">
+  <h2 style="text-align: center; margin-bottom: 30px;">Add Food Items</h2>
+  <form action="/add" method="post" id="foodForm">
+    <div id="foodItems">
+      <!-- Initial food item fields -->
+      <div class="food-item">
+        <div style="margin-bottom: 20px;">
+          <label for="product_name" style="font-weight: bold;">Product Name</label>
+          <input type="text" style="width: 100%;" class="form-control" name="product_name[]" required>
+        </div>
+        <div style="margin-bottom: 20px;">
+          <label for="manufacturing_date" style="font-weight: bold;">Manufacturing Date</label>
+          <input type="date" style="width: 100%;" class="form-control" name="manufacturing_date[]" required>
+        </div>
+        <div style="margin-bottom: 20px;">
+          <label for="expiry_date" style="font-weight: bold;">Expiry Date</label>
+          <input type="date" style="width: 100%;" class="form-control" name="expiry_date[]" required>
+        </div>
+        <div style="margin-bottom: 20px;">
+          <label for="product_type" style="font-weight: bold;">Product Type</label>
+          <select style="width: 100%;" class="form-control" name="product_type[]" required>
+            <option value="Vegetables">Vegetables</option>
+            <option value="Fruits">Fruits</option>
+            <option value="Dairy">Dairy</option>
+            <option value="Meat">Meat</option>
+            <option value="Medicines">Medicines</option>
+            <option value="Other">Other</option>
+            <!-- Add more options as needed -->
+          </select>
+        </div>
+      </div>
+    </div>
+    <button type="submit" style="display: block; width: 100%; margin-top: 20px; color: white; background-color: green; font-weight: bold; font-family: 'Arial Black', Gadget, sans-serif;" class="btn btn-primary">Add Food</button>
+    <button type="button" id="addMore" style="display: block; width: 100%; margin-top: 10px; color: white; background-color: #333; font-weight: bold; font-family: 'Arial Black', Gadget, sans-serif;" class="btn btn-secondary">Add More</button>
+
+    <script>
+      document.getElementById("addMore").addEventListener("click", function() {
+        // Clone the first food item and append it to the form
+        const foodItemsDiv = document.getElementById("foodItems");
+        const firstFoodItem = foodItemsDiv.querySelector('.food-item');
+        const clone = firstFoodItem.cloneNode(true);
+        foodItemsDiv.appendChild(clone);
+      });
+    </script>
+  </form>
+</div>
+
+{% endblock %}

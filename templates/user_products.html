@@ -1,0 +1,143 @@
+{% extends "layout.html" %}
+
+{% block body %}
+<section class="container mx-auto p-6 font-mono">
+    <h1 class="text-5xl">User Products</h1>
+
+    <!-- Display products close to expiry -->
+    <div class="w-full mb-8 overflow-hidden rounded-lg shadow-lg">
+        <div class="w-full overflow-x-auto">
+
+            <!-- Display products close to expiry -->
+            <h2 class="text-3xl text-green-600">Expired !!!</h2>
+            <h3 class="text-xl text-red-600">Don't use them!!</h3>
+
+            <table class="table table-bordered mb-8">
+                <thead>
+                    <tr>
+                        <th>Product Name</th>
+                        <th>Manufacturing Date</th>
+                        <th>Expiry Date</th>
+                        <th>Product Type</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for product in expired_products %}
+                    <tr>
+                        <td>{{ product.product_name }}</td>
+                        <td>{{ product.manufacturing_date }}</td>
+                        <td>{{ product.expiry_date }}</td>
+                        <td>{{ product.product_type }}</td>
+                        <td>
+                            <form action="/delete/{{ product.id }}" method="post">
+                                <button type="submit" class="btn btn-danger" style="background-color: #ff5f5f;">Delete</button>
+                            </form>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+
+            <h2 class="text-3xl">Products Expiring Soon</h2>
+            <h3 class="text-xl">Within 1 Day</h3>
+            <table class="table table-bordered mb-8">
+                <thead>
+                    <tr>
+                        <th>Product Name</th>
+                        <th>Manufacturing Date</th>
+                        <th>Expiry Date</th>
+                        <th>Product Type</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for product in close_to_expiry.one_day %}
+                    <tr>
+                        <td>{{ product.product_name }}</td>
+                        <td>{{ product.manufacturing_date }}</td>
+                        <td>{{ product.expiry_date }}</td>
+                        <td>{{ product.product_type }}</td>
+                        <td>
+                            <form action="/delete/{{ product.id }}" method="post">
+                                <button type="submit" class="btn btn-danger" style="background-color: #ff5f5f;">Delete</button>
+                            </form>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+
+            <h3 class="text-xl">Within 1 Week</h3>
+            <table class="table table-bordered mb-8">
+                <thead>
+                    <tr>
+                        <th>Product Name</th>
+                        <th>Manufacturing Date</th>
+                        <th>Expiry Date</th>
+                        <th>Product Type</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for product in close_to_expiry.one_week %}
+                    <tr>
+                        <td>{{ product.product_name }}</td>
+                        <td>{{ product.manufacturing_date }}</td>
+                        <td>{{ product.expiry_date }}</td>
+                        <td>{{ product.product_type }}</td>
+                        <td>
+                            <form action="/delete/{{ product.id }}" method="post">
+                                <button type="submit" class="btn btn-danger" style="background-color: #ff5f5f;">Delete</button>
+                            </form>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+
+            <h3 class="text-xl">Within A month</h3>
+            <table class="table table-bordered mb-8">
+                <thead>
+                    <tr>
+                        <th>Product Name</th>
+                        <th>Manufacturing Date</th>
+                        <th>Expiry Date</th>
+                        <th>Product Type</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for product in close_to_expiry.one_month %}
+                    <tr>
+                        <td>{{ product.product_name }}</td>
+                        <td>{{ product.manufacturing_date }}</td>
+                        <td>{{ product.expiry_date }}</td>
+                        <td>{{ product.product_type }}</td>
+                        <td>
+                            <form action="/delete/{{ product.id }}" method="post">
+                                <button type="submit" class="btn btn-danger" style="background-color: #ff5f5f;">Delete</button>
+                            </form>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+
+    <!-- Generate PDF option at the bottom -->
+    <div class="fixed bottom-4 right-4">
+        <button class="btn btn-primary" onclick="generatePDF()">Generate PDF</button>
+    </div>
+
+</section>
+
+<!-- Include the necessary scripts for PDF generation -->
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+<script>
+    function generatePDF() {
+        const pdf = new jsPDF();
+        // Add your PDF generation logic here
+        pdf.save('user_products.pdf');
+    }
+</script>
+{% endblock %}

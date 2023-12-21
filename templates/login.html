@@ -1,0 +1,41 @@
+{% extends "layout.html" %}
+
+
+{% block body %}
+<!--LOGIN/REGISTER-->
+
+
+
+<div class="login-box">
+  <h2> ChecEat Login</h2>
+  <form action="/login" method="POST">
+    <div class="user-box">
+      <input type="text" name="username" required="enter" autocomplete = "off">
+      <label>Username</label>
+    </div>
+    <div class="user-box">
+      <input type="password" name="password" required="" autocomplete = "off" >
+      <label>Password</label>
+    </div>
+    <button type="submit" class="animated-button custombutton">
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      Submit
+    </button>
+
+  </p>
+
+  </form>
+  <p style="color: #fff; text-align: center; margin-top: 20px;">
+    New to ChecEat?  <a href="/register" style="color: #03e9f4; font-size: 0.8em; padding: 4px; vertical-align: middle;">Register</a>
+  </p>
+</div>
+
+  {% endblock %}
+
+
+
+
+
