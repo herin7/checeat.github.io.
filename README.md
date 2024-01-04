@@ -15,7 +15,7 @@ ChecEat is a Flask-based application designed to assist users in managing perish
    - Install dependencies using `pip install -r requirements.txt`.
 
 2. **Run the Application:**
-   - Start the Flask app using `python app.py`.
+   - Start the Flask app using `python app.py` or `flask run`.
    - Access the application via your web browser at `http://localhost:5000`.
 
 ### Usage
