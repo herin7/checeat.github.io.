@@ -35,7 +35,7 @@ def load_user(user_id):
 @app.route("/")
 def index():
     if "user_id" in session:
-        return render_template("layout.html")  # Show options for logged-in users
+        return render_template("index.html")  # Show options for logged-in users
     else:
         return render_template("register.html")  # Show options for new users (login/register)
 
